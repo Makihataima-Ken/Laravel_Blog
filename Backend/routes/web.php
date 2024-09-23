@@ -17,4 +17,4 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/home',[AdminController::class,'index']);
+Route::get('/home',[AdminController::class,'index'])->name('home');
