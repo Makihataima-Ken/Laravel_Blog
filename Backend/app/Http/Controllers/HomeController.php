@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use app\Models\User;
 use illuminate\Support\Facades\Auth;
-class AdminController extends Controller
+class HomeController extends Controller
 {
     public function index()
     {
@@ -24,5 +24,10 @@ class AdminController extends Controller
             else return redirect()->back();
         }
 
+    }
+
+    public function homepage()
+    {
+        return view('home.homepage');
     }
 }
