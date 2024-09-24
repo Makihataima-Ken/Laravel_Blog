@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[HomeController::class,'homepage']);
 
-Route::middleware([
+/*Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
@@ -13,6 +13,6 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-});
+});*/
 
 Route::get('/home',[HomeController::class,'index'])->name('home');
