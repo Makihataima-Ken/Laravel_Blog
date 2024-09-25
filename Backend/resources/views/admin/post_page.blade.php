@@ -30,6 +30,10 @@
       @include('admin.sidebar')
       <!-- Sidebar Navigation end-->
       <div class="page-content">
+        @if(session()->has('message'))
+        <div class="alert alert-success"><button class="button" class="close" data-dismiss="alert" area-hiden="true">x</button></div>
+        {{session()->get('message')}}
+        @endif
         <h1 class="post_title">Add Post</h1>
         <div>
             <form action="{{url('add_post')}}"method="POST" enctype="multipart/form-data">
