@@ -9,7 +9,7 @@
                      <div><img src="postimage/{{$post->image}}" class="services_img"></div>
                      <h4>{{$post->title}}</h4>
                      <p>Posted by <b>{{$post->name}}</b></p>
-                     <div class="btn_main"><a href="#">Read More</a></div>
+                     <div class="btn_main"><a href="{{url('post_details',$post->id)}}">Read More</a></div>
                   </div>
                   @endforeach
                </div>

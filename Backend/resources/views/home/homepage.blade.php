@@ -6,7 +6,7 @@
          .services_img
          {
             height: 350px;
-            width:300px;
+            width:200px;
             padding:10px;
          }
      </style>
