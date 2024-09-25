@@ -22,6 +22,12 @@
         {
             background-color: rebeccapurple;
         }
+        .img_deg
+        {
+          height: 100px;
+          width: 150px;
+          padding:10px;
+        }
 
     </style>
   </head>
@@ -32,6 +38,12 @@
       @include('admin.sidebar')
       <!-- Sidebar Navigation end-->
       <div class="page-content">
+        <!-- message notifier-->
+        @if(session()->has('message'))
+        <div class="alert alert-danger"><button class="button" class="close" data-dismiss="alert" area-hiden="true">x</button></div>
+        {{session()->get('message')}}
+        @endif
+        <!-- message notifier-->
         <h1 class="title_deg">All Post</h1>
         <table class="table_deg">
             <tr class="topth">
@@ -41,6 +53,7 @@
                 <th>Status</th>
                 <th>Usertype</th>
                 <th>Image</th>
+                <th>Delete</th>
             </tr>
             @foreach($post as $post)
             <tr>
@@ -49,7 +62,8 @@
                 <th>{{$post->name}}</th>
                 <th>{{$post->status}}</th>
                 <th>{{$post->usertype}}</th>
-                <th>{{$post->image}}</th>
+                <th><img class="img_deg" src="postimage/{{$post->image}}" alt="smth"></th>
+                <th><a href="{{url('delete_post',$post->id)}}"class="btn btn-danger" onclick="return confirm('are you sure that you want to delete this?')">Delete</a></th>
             </tr>
             @endforeach
         </table>
