@@ -2,6 +2,14 @@
 <html lang="en">
    <head>
      @include('home.homecss')
+     <style type="text/css">
+         .services_img
+         {
+            height: 350px;
+            width:300px;
+            padding:10px;
+         }
+     </style>
    </head>
    <body>
       <!-- header section start -->
