@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head> 
+    <base href="/public">
     @include('admin.css')
     <style type="text/css">
         .post_title
@@ -21,6 +22,13 @@
             display: inline-block;
             width: 200px;
         }
+        .old_img
+        {
+          height: 100px;
+          width: 150px;
+          padding:10px;
+          margin: auto;
+        }
     </style>
   </head>
   <body>
@@ -34,17 +42,18 @@
         <div class="alert alert-success"><button class="button" class="close" data-dismiss="alert" area-hiden="true">x</button></div>
         {{session()->get('message')}}
         @endif
-        <h1 class="post_title">Add Post</h1>
+        <h1 class="post_title">Edit Post</h1>
         <div>
-            <form action="{{url('add_post')}}"method="POST" enctype="multipart/form-data">
+            <form action="{{url('update_post',$post->id)}}"method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="div_center"><label>Post Title</label><input type="text"name="title"></div>
-                <div class="div_center"><label>Post Description</label><textarea name="description"></textarea></div>
+                <div class="div_center"><label>Post Title</label><input type="text"name="title"value="{{$post->title}}"></div>
+                <div class="div_center"><label>Post Description</label><textarea name="description">{{$post->description}}</textarea></div>
+                <div class="div_center"><label>Old Image</label><img src="/postimage/{{$post->image}}" class="old_img"></div>
                 <div class="div_center"><label>Upload Image</label><input type="file"name="image"></div>
-                <div class="div_center"><input type="submit"name="submit" class="btn btn-primary"></div>
+                <div class="div_center"><input type="submit"value="update" class="btn btn-primary"></div>
             </form>
-        </div>
       </div>
+      
       @include('admin.footer')
   </body>
 </html>
