@@ -13,26 +13,39 @@ class AdminController extends Controller
         return view('admin.post_page');
     }
 
+    public function show_post()
+    {
+        $post=Post::all();
+        return view('admin.show_post',compact('post'));
+    }
+
     public function add_post(Request $request)
     {
         $user=Auth::user();
-        $user_id=$user->id;
-        $user_name=$user->name;
-        $user_type=$user->usertype;
 
-        $post= new Post();
-         $post->title=$request->title;
-         $post->description=$request->description;
-         $post->status='active';
-         $post->user_id=$user_id;
-         $post->name=$user_name;
-         $post->usertype=$user_type;
-         $image=$request->image;
-         if($image){
-            $imageName=time().'.'.$image->getClientOriginalExtension();
-            $request->image->move('postimage',$imageName);//save img in a folder
-            $post->image=$imageName;
-         }
+        // Validate the request data
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        // Create a new post instance with mass assignment
+        $post = new Post([
+            'title' => $request->title,
+            'description' => $request->description,
+            'status' => 'active',
+            'user_id' => $user->id,
+            'name' => $user->name,
+            'usertype' => $user->usertype,
+        ]);
+        
+         // Handle image upload if present
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->getClientOriginalExtension();
+            $request->image->move('postimage', $imageName);
+            $post->image = $imageName;
+        }
 
          $post->save();
         return redirect()->back()->with('message','posted successfuly');
