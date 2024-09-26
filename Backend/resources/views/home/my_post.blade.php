@@ -16,10 +16,12 @@
       <!-- header section start -->
       <div class="header_section">
          @include('home.header')
+         @if(session()->has('message'))
+         <div class="alert alert-success"><button class="button" class="close" data-dismiss="alert" area-hiden="true">x</button>{{session()->get('message')}}</div>
+         @endif
       </div>
       <div class="container">
-            <h1 class="services_taital">My Posts </h1>
-            <p class="services_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration</p>
+            <h1 class="services_taital"style="text-align:center" padding="20px">My Posts </h1>
             <div class="services_section_2">
                <div class="row">
                   @foreach($post as $post)
@@ -28,7 +30,8 @@
                      <h3><b>{{$post->title}}</b></h3>
                      <h4>{{$post->description}}</h4>
                      <p>Posted by <b>{{$post->name}}</b></p>
-                     <a href="{{url('delete_post',$post->id)}}"class="btn btn-danger" onclick="return confirm('are you sure that you want to delete this?')">Delete</a>
+                     <a href="{{url('user_delete_post',$post->id)}}"class="btn btn-danger" onclick="return confirm('are you sure that you want to delete this?')">Delete</a>
+                     <a href="{{url('user_edit_post',$post->id)}}"class="btn btn-primary">Edit</a>
                   </div>
                   @endforeach
                </div>

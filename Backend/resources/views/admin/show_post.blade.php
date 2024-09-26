@@ -40,8 +40,7 @@
       <div class="page-content">
         <!-- message notifier-->
         @if(session()->has('message'))
-        <div class="alert alert-danger"><button class="button" class="close" data-dismiss="alert" area-hiden="true">x</button></div>
-        {{session()->get('message')}}
+        <div class="alert alert-danger"><button class="button" class="close" data-dismiss="alert" area-hiden="true">x</button>{{session()->get('message')}}</div>
         @endif
         <!-- message notifier-->
         <h1 class="title_deg">All Post</h1>

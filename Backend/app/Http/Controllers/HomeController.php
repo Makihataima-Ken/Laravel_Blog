@@ -7,6 +7,7 @@ use app\Models\User;
 use illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Storage;
    
 
 class HomeController extends Controller
@@ -48,12 +49,60 @@ class HomeController extends Controller
         $post=Post::where('user_id',$user_id)->get();
         return view('home.my_post',compact('post'));
     }
+    public function user_delete_post($id)
+    {
+        $post=Post::find($id);
+        $post->delete();
+        return redirect()->back()->with('message','post deleted successfully');
+    }
+
+    public function user_edit_post($id)
+    {
+        $post=Post::find($id);
+        return view('home.user_edit_page',compact('post'));
+    }
 
     public function post_details($id)
     {
         $post=Post::find($id);
         return view('home.post_details',compact('post'));
     }
+
+    public function user_update_post(Request $request,$id)
+    {
+        $post=Post::find($id);
+
+        // Validate the request data
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        // Update the post attributes
+        $post->fill([
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
+
+        // Handle image upload if present
+        if ($request->hasFile('image')) {
+            // Optionally delete the old image if necessary
+            if ($post->image) {
+                Storage::delete('postimage/' . $post->image);
+            }
+
+            // Store new image
+            $imageName = time() . '.' . $request->image->getClientOriginalExtension();
+            $request->image->move('postimage', $imageName);
+            $post->image = $imageName;
+        }
+
+        $post->save();
+
+        return redirect()->back()->with('message','post updated successfuly');
+    }
+
 
     public function user_post(Request $request)
     {

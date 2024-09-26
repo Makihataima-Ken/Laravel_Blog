@@ -31,8 +31,7 @@
       <!-- Sidebar Navigation end-->
       <div class="page-content">
         @if(session()->has('message'))
-        <div class="alert alert-success"><button class="button" class="close" data-dismiss="alert" area-hiden="true">x</button></div>
-        {{session()->get('message')}}
+        <div class="alert alert-success"><button class="button" class="close" data-dismiss="alert" area-hiden="true">x</button>{{session()->get('message')}}</div>
         @endif
         <h1 class="post_title">Add Post</h1>
         <div>
