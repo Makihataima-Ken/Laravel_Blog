@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
+      <base href="/public">
      @include('home.homecss')
      <style type="text/css">
-         .services_img
+         .post_img
          {
-            height: 350px;
-            width:500px;
-            padding:20px;
+            height: 250px;
+            width:400px;
+            padding:10px;
             margin: auto;
+            
          }
      </style>
    </head>
@@ -18,12 +20,11 @@
          @include('home.header')
       </div>
       <div class="col-md-12" style="text-align:center">
-            <div><img src="postimage/{{$post->image}}" class="services_img"></div>
+            <div><img src="postimage/{{$post->image}}" class="post_img"></div>
             <h3><b>{{$post->title}}</b></h3>
             <h4>{{$post->description}}</h4>
             <p>Posted by <b>{{$post->name}}</b></p>
-            <div class="btn_main"><a href="{{url('post_details',$post->id)}}">Read More</a></div>
-        </div>
+      </div>
 
       @include('home.footer')    
    </body>
