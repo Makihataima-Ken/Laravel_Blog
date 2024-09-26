@@ -54,6 +54,8 @@
                 <th>Image</th>
                 <th>Edit</th>
                 <th>Delete</th>
+                <th>Approve</th>
+                <th>Reject</th>
             </tr>
             @foreach($post as $post)
             <tr>
@@ -65,6 +67,10 @@
                 <th><img class="img_deg" src="postimage/{{$post->image}}" alt="smth"></th>
                 <th><a href="{{url('edit_post',$post->id)}}"class="btn btn-success">Edit</a></th>
                 <th><a href="{{url('delete_post',$post->id)}}"class="btn btn-danger" onclick="return confirm('are you sure that you want to delete this?')">Delete</a></th>
+                @if($post->status=='pending')
+                <th><a href="{{url('approve_post',$post->id)}}"class="btn btn-outline secondary">Approve</a></th>
+                <th><a href="{{url('reject_post',$post->id)}}"class="btn btn-primary">Reject</a></th>
+                @endif
             </tr>
             @endforeach
         </table>

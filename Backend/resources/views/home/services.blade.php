@@ -5,7 +5,7 @@
             <div class="services_section_2">
                <div class="row">
                   @foreach($post as $post)
-                  <div class="col-md-4">
+                  <div class="col-md-4" style="padding:10px">
                      <div><img src="postimage/{{$post->image}}" class="services_img"></div>
                      <h4>{{$post->title}}</h4>
                      <p>Posted by <b>{{$post->name}}</b></p>

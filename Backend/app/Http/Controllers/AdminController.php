@@ -34,6 +34,22 @@ class AdminController extends Controller
         return view('admin.edit_page',compact('post'));
     }
 
+    public function approve_post($id)
+    {
+        $post=Post::find($id);
+        $post->status='active';
+        $post->save();
+        return redirect()->back()->with('message','post has bben approved');
+    }
+
+    public function reject_post($id)
+    {
+        $post=Post::find($id);
+        $post->status='rejected';
+        $post->save();
+        return redirect()->back()->with('message','post rejected successfully');
+    }
+
     public function update_post(Request $request,$id)
     {
         $post=Post::find($id);

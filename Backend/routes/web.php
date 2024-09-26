@@ -33,3 +33,6 @@ Route::get('/user_delete_post/{id}',[HomeController::class,'user_delete_post'])-
 Route::get('/user_edit_post/{id}',[HomeController::class,'user_edit_post'])->middleware('auth');
 Route::post('/user_update_post/{id}',[HomeController::class,'user_update_post'])->middleware('auth');
 
+Route::get('/approve_post/{id}',[AdminController::class,'approve_post']);
+Route::get('/reject_post/{id}',[AdminController::class,'reject_post']);
+
