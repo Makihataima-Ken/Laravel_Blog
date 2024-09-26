@@ -21,7 +21,7 @@
          @endif
       </div>
       <div class="container">
-            <h1 class="services_taital"style="text-align:center" padding="20px">My Posts </h1>
+            <h1 class="services_taital"style="text-align:center padding:10px">My Posts </h1>
             <div class="services_section_2">
                <div class="row">
                   @foreach($post as $post)
